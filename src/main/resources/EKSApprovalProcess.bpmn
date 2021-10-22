@@ -22,9 +22,10 @@
       <bpmn:documentation>End user raises the request for creating a pipeline</bpmn:documentation>
       <bpmn:extensionElements>
         <camunda:inputOutput>
-          <camunda:inputParameter name="requestType" />
+          <camunda:inputParameter name="requestType">EKS Selfservice</camunda:inputParameter>
           <camunda:inputParameter name="projectInfo" />
-          <camunda:inputParameter name="configInput" />
+          <camunda:inputParameter name="configInput">
+</camunda:inputParameter>
           <camunda:inputParameter name="environments" />
           <camunda:inputParameter name="costCode" />
           <camunda:outputParameter name="requestID" />
