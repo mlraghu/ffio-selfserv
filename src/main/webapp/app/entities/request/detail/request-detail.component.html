@@ -1,0 +1,56 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="request">
+      <h2 data-cy="requestDetailsHeading"><span>Request</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ request.id }}</span>
+        </dd>
+        <dt><span>Request ID</span></dt>
+        <dd>
+          <span>{{ request.requestID }}</span>
+        </dd>
+        <dt><span>Request Type</span></dt>
+        <dd>
+          <span>{{ request.requestType }}</span>
+        </dd>
+        <dt><span>Project Info</span></dt>
+        <dd>
+          <span>{{ request.projectInfo }}</span>
+        </dd>
+        <dt><span>Cost Code</span></dt>
+        <dd>
+          <span>{{ request.costCode }}</span>
+        </dd>
+        <dt><span>Environments</span></dt>
+        <dd>
+          <span>{{ request.environments }}</span>
+        </dd>
+        <dt><span>Config Input</span></dt>
+        <dd>
+          <span>{{ request.configInput }}</span>
+        </dd>
+        <dt><span>Status</span></dt>
+        <dd>
+          <span>{{ request.status }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/request', request.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -9,5 +9,17 @@
         <extension>html</extension>
         <mime-type>text/html;charset=utf-8</mime-type>
     </mime-mapping>
-
+    <filter>
+      <filter-name>Container Based Authentication Filter</filter-name>
+      <filter-class>org.camunda.bpm.webapp.impl.security.auth.ContainerBasedAuthenticationFilter</filter-class>
+      <init-param>
+        <param-name>authentication-provider</param-name>
+        <param-value>org.camunda.bpm.engine.rest.security.auth.impl.ContainerBasedAuthenticationProvider</param-value>
+      </init-param>
+    </filter>
+    <filter-mapping>
+      <filter-name>Container Based Authentication Filter</filter-name>
+      <url-pattern>/camunda/*</url-pattern>
+      <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
 </web-app>

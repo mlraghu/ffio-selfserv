@@ -1,0 +1,22 @@
+entity Request {
+    requestID Long unique
+    requestType String
+    projectInfo String required
+    costCode String required
+    environments Integer required min(1)
+    configInput TextBlob required
+    status RequestStatus required
+}
+enum RequestStatus {
+    DRAFT, PENDING, RFI, APPROVED, CANCELLED, COMPLETE
+}
+
+entity RequestType {
+    requestTypeID String unique
+    requestTypeName String
+    requestTypeInput TextBlob required
+    approvalProcess String required
+    automationProcess String required
+
+}
+

@@ -1,0 +1,125 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-request-heading" data-cy="RequestCreateUpdateHeading">Create or edit a Request</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_requestID">Request ID</label>
+          <input type="number" class="form-control" name="requestID" id="field_requestID" data-cy="requestID" formControlName="requestID" />
+          <div *ngIf="editForm.get('requestID')!.invalid && (editForm.get('requestID')!.dirty || editForm.get('requestID')!.touched)">
+            <small class="form-text text-danger" [hidden]="!editForm.get('requestID')?.errors?.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_requestType">Request Type</label>
+          <input
+            type="text"
+            class="form-control"
+            name="requestType"
+            id="field_requestType"
+            data-cy="requestType"
+            formControlName="requestType"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_projectInfo">Project Info</label>
+          <input
+            type="text"
+            class="form-control"
+            name="projectInfo"
+            id="field_projectInfo"
+            data-cy="projectInfo"
+            formControlName="projectInfo"
+          />
+          <div *ngIf="editForm.get('projectInfo')!.invalid && (editForm.get('projectInfo')!.dirty || editForm.get('projectInfo')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('projectInfo')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_costCode">Cost Code</label>
+          <input type="text" class="form-control" name="costCode" id="field_costCode" data-cy="costCode" formControlName="costCode" />
+          <div *ngIf="editForm.get('costCode')!.invalid && (editForm.get('costCode')!.dirty || editForm.get('costCode')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('costCode')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_environments">Environments</label>
+          <input
+            type="number"
+            class="form-control"
+            name="environments"
+            id="field_environments"
+            data-cy="environments"
+            formControlName="environments"
+          />
+          <div
+            *ngIf="editForm.get('environments')!.invalid && (editForm.get('environments')!.dirty || editForm.get('environments')!.touched)"
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('environments')?.errors?.required"> This field is required. </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('environments')?.errors?.min">
+              This field should be at least 1.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('environments')?.errors?.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_configInput">Config Input</label>
+          <textarea
+            class="form-control"
+            name="configInput"
+            id="field_configInput"
+            data-cy="configInput"
+            formControlName="configInput"
+          ></textarea>
+          <div *ngIf="editForm.get('configInput')!.invalid && (editForm.get('configInput')!.dirty || editForm.get('configInput')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('configInput')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_status">Status</label>
+          <select class="form-control" name="status" formControlName="status" id="field_status" data-cy="status">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let requestStatus of requestStatusValues" [value]="requestStatus">requestStatus</option>
+          </select>
+          <div *ngIf="editForm.get('status')!.invalid && (editForm.get('status')!.dirty || editForm.get('status')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('status')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

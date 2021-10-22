@@ -1,0 +1,48 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="requestType">
+      <h2 data-cy="requestTypeDetailsHeading"><span>Request Type</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ requestType.id }}</span>
+        </dd>
+        <dt><span>Request Type ID</span></dt>
+        <dd>
+          <span>{{ requestType.requestTypeID }}</span>
+        </dd>
+        <dt><span>Request Type Name</span></dt>
+        <dd>
+          <span>{{ requestType.requestTypeName }}</span>
+        </dd>
+        <dt><span>Request Type Input</span></dt>
+        <dd>
+          <span>{{ requestType.requestTypeInput }}</span>
+        </dd>
+        <dt><span>Approval Process</span></dt>
+        <dd>
+          <span>{{ requestType.approvalProcess }}</span>
+        </dd>
+        <dt><span>Automation Process</span></dt>
+        <dd>
+          <span>{{ requestType.automationProcess }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/request-type', requestType.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

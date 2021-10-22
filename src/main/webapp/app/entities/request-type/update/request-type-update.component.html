@@ -1,0 +1,124 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-request-type-heading" data-cy="RequestTypeCreateUpdateHeading">Create or edit a Request Type</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_requestTypeID">Request Type ID</label>
+          <input
+            type="text"
+            class="form-control"
+            name="requestTypeID"
+            id="field_requestTypeID"
+            data-cy="requestTypeID"
+            formControlName="requestTypeID"
+          />
+          <div
+            *ngIf="
+              editForm.get('requestTypeID')!.invalid && (editForm.get('requestTypeID')!.dirty || editForm.get('requestTypeID')!.touched)
+            "
+          ></div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_requestTypeName">Request Type Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="requestTypeName"
+            id="field_requestTypeName"
+            data-cy="requestTypeName"
+            formControlName="requestTypeName"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_requestTypeInput">Request Type Input</label>
+          <textarea
+            class="form-control"
+            name="requestTypeInput"
+            id="field_requestTypeInput"
+            data-cy="requestTypeInput"
+            formControlName="requestTypeInput"
+          ></textarea>
+          <div
+            *ngIf="
+              editForm.get('requestTypeInput')!.invalid &&
+              (editForm.get('requestTypeInput')!.dirty || editForm.get('requestTypeInput')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('requestTypeInput')?.errors?.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_approvalProcess">Approval Process</label>
+          <input
+            type="text"
+            class="form-control"
+            name="approvalProcess"
+            id="field_approvalProcess"
+            data-cy="approvalProcess"
+            formControlName="approvalProcess"
+          />
+          <div
+            *ngIf="
+              editForm.get('approvalProcess')!.invalid &&
+              (editForm.get('approvalProcess')!.dirty || editForm.get('approvalProcess')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('approvalProcess')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_automationProcess">Automation Process</label>
+          <input
+            type="text"
+            class="form-control"
+            name="automationProcess"
+            id="field_automationProcess"
+            data-cy="automationProcess"
+            formControlName="automationProcess"
+          />
+          <div
+            *ngIf="
+              editForm.get('automationProcess')!.invalid &&
+              (editForm.get('automationProcess')!.dirty || editForm.get('automationProcess')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('automationProcess')?.errors?.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -182,3 +182,12 @@ jhipster:
 # ===================================================================
 
 # application:
+camunda.bpm.webapp:
+  index-redirect-enabled: false
+
+camunda.bpm.admin-user:
+  id: admin
+  password: admin
+  firstName: Demo
+filter:
+  create: All tasks
