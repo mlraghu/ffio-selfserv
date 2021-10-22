@@ -16,9 +16,8 @@ public class SendEmailDelegate implements JavaDelegate {
     private final Logger log = LoggerFactory.getLogger(SendEmailDelegate.class);
 
     public void execute(DelegateExecution execution) throws Exception {
-        //  String requestContent = execution.getVariable("CONFIG_INPUT").toString();
-        String requestContent = execution.toString();
-        //String emailID = execution.getVariable("USER_EMAIL").toString();
+        String requestContent = execution.getVariable(CONFIG_INPUT).toString();
+        //String emailID = execution.getVariable(USER_EMAIL).toString();
         // ...
         try {
             //SendEmailService.sendEmail(emailID, requestContent);
